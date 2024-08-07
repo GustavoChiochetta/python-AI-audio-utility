@@ -1,6 +1,22 @@
-from os import getenv
 from dotenv import load_dotenv
 from openai import OpenAI
+import argparse
+
+parser = argparse.ArgumentParser(description='audio translator and transcriptor using whisper.')
+
+parser.add_argument('file_path', type=str, help='File path for the audio file')
+parser.add_argument('file_name', type=str, help='File name of audio file')
+parser.add_argument('openai_key', type=str, help='Your open ai key.')
+parser.add_argument('--translate', action='store_true', help='Should I translate the audio?', default=True)
+parser.add_argument('--transcript', action='store_true', help='Should I transcript the audio?', default=True)
+
+args = parser.parse_args()
+
+file_path = args.file_path
+file_name = args.file_name
+openai_key = args.openai_key
+# should_translate = args.translate (work in progress)
+# should_transcript = args.transcript (work in progress)
 
 def write_text_to_file(text, file_name, path):
     new_file_name = f"transcription_{file_name}.txt"
@@ -33,21 +49,12 @@ def trascribe_translate_save_audio(api, file_path, file_name, model_name):
 def main():
     load_dotenv()
 
-    api_key = getenv('OPENAI_API_KEY')
-    project_id = getenv('OPENAI_PROJECT_ID')
-    organization_id = getenv('OPENAI_ORGANIZATION_ID')
+    api_key = openai_key
 
 
-    api = OpenAI(
-    organization=organization_id,
-    project=project_id,
-    api_key=api_key
-    )
+    api = OpenAI(api_key=api_key)
     
     model_name = "whisper-1"
-    file_path = "podcasts/cloudstrike_short.mp3"
-    file_name = "cloudstrike_short"
-    file_url = "https://www.hipsters.tech/incidente-incrivel-da-cloudstrike-hipsters-ponto-tech-421/"
     
     trascribe_translate_save_audio(api, file_path, file_name, model_name)
 
