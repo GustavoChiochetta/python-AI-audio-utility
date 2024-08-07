@@ -1,0 +1,13 @@
+# Ignorar o arquivo .env
+.env
+
+# Ignorar tudo dentro da pasta translations, mas não a pasta em si
+translations/*
+!translations/.gitkeep
+
+# Ignorar tudo dentro da pasta transcriptions, mas não a pasta em si
+transcriptions/*
+!transcriptions/.gitkeep
+
+podcasts/*
+!podcasts/.gitkeep
