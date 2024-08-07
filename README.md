@@ -2,8 +2,8 @@
 
 ## Basic usage
 
-To use this code, first make sure that you are using `python3`.
+To use this code, first make sure that you are using `python3` and have an OpenAi API key.
 
-Create three repositories, one called `podcasts` where you are going to install your audio files. One called `translations`, for the translatede text (wich is going to be in englis). And another one calle `transcriptions`.
+Create two repositories, one called `translations`, for the translated text (wich is going to be in english). And another one called `transcriptions`.
 
-Now simply run `python3 main.py`.
+Now run `python3 main.py "file_path" "file_name" "open_ai_key"`.
